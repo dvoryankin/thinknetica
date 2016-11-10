@@ -20,6 +20,7 @@ loop do
     break
   elsif cart.include?(name)
     puts "Already presence"
+    redo
   end
 
   print"Enter product price: "
