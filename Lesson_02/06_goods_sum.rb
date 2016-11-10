@@ -18,6 +18,8 @@ loop do
   name = gets.chomp
   if name == "stop"
     break
+  elsif cart.include?(name)
+    puts "Already presence"
   end
 
   print"Enter product price: "
