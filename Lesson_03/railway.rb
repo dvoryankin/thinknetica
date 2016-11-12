@@ -2,22 +2,22 @@ class Station
 
   def initialize(name)
     @name = name
+    @trains = []
   end
 
-  def add_train
-
+  def take_train(train)
+    train?(train)
+    @trains << train
   end
 
   def show_all_trains
-
   end
 
   def show_type
-
   end
 
-  def move_train
-
+  def send_train(train)
+    train = @trains.pop
   end
 
 end
@@ -25,18 +25,22 @@ end
 
 class Route
 
-  def initialize(start, finish)
-    @start = start
-    @finish = finish
+  def initialize(route = [])
+    @route = route
+    
   end
 
-  def add_station
+  def add_station(new)
+    @route = @route.insert(-2, new)
+    
+  end
 
-
+  def remove_station(station)
+    @route.delete(station)
   end
 
   def station_list
-
+    @route
   end
 
 end
@@ -44,14 +48,15 @@ end
 
 class Train
 
-  def initialize(number, type = "Passenger", wagons)
+  attr_accessor :speed, :wagons, :type, :station, :route
+
+  def initialize(number: 01, type: "Passenger", wagons: 0)
     @speed = 0
     @wagons = wagons
     @type = type
     @number = number
   end
 
-  attr_accessor :speed, :wagons, :type
 
   def speed_up
     @speed += 10
@@ -83,24 +88,20 @@ class Train
     end
   end
 
-  def add_route
-
+  def add_route(route)
+    @route = route
   end
 
   def move_to_station
-
   end
 
   def show_next_station
-
   end
 
   def show_preview_station
-
   end
 
   def show_station
-
   end
 
 end
