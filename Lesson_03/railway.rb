@@ -61,6 +61,10 @@ class Train
     @number = number
   end
 
+  def route
+    @route
+  end
+
 
   def speed_up
     @speed += 10
@@ -99,7 +103,7 @@ class Train
   def move_to_station(station)
  
     if @route.include?(station)
-      puts "You are on the #{station}"
+      puts "Moving to #{station}"
     else
       "no such station in the route"
     end
