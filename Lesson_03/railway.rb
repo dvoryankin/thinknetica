@@ -26,7 +26,7 @@ end
 class Route
 
   def initialize(route = [])
-    @route = route.to_a
+    @route = route
   end
 
   def add_station(new)
@@ -59,6 +59,7 @@ class Train
     @wagons = wagons
     @type = type
     @number = number
+    @route = route
   end
 
 
@@ -104,7 +105,7 @@ class Train
       "no such station in the route"
     end
     @current_station = @route.index(station)
-    
+
   end
 
 
