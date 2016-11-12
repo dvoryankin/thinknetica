@@ -26,8 +26,7 @@ end
 class Route
 
   def initialize(route = [])
-    @route = route
-    
+    @route = route.to_a
   end
 
   def add_station(new)
@@ -42,6 +41,11 @@ class Route
   def station_list
     @route
   end
+
+  def first_station
+    @route.first
+  end
+
 
 end
 
@@ -95,18 +99,21 @@ class Train
   def move_to_station(station)
  
     if @route.include?(station)
-      route.index(station)
+      puts "You are on the #{station}"
     else
       "no such station in the route"
     end
-       puts @route.index(station)
+    @current_station = @route.index(station)
+    
   end
 
-  def show_next_station
 
+  def show_next_station
+    @route[@current_station + 1]
   end
 
   def show_preview_station
+    @route[@current_station - 1]
   end
 
   def show_current_station
