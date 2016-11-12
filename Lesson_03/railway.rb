@@ -93,12 +93,13 @@ class Train
   end
 
   def move_to_station(station)
-    puts @route.index(station)
-    # if station?.route
-    #   route.index(station)
-    # else
-    #   "no such station in the route"
-    # end
+ 
+    if @route.include?(station)
+      route.index(station)
+    else
+      "no such station in the route"
+    end
+       puts @route.index(station)
   end
 
   def show_next_station
