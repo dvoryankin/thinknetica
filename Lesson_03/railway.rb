@@ -17,7 +17,7 @@ class Station
   end
 
   def send_train(train)
-    train = @trains.pop
+    @trains.delete(train)
   end
 
 end
