@@ -27,6 +27,7 @@ class Route
 
   def initialize(route = [])
     @route = route
+    @@route = @route
   end
 
   def add_station(new)
@@ -59,7 +60,7 @@ class Train
     @wagons = wagons
     @type = type
     @number = number
-    @route = route
+    @@route = @route
   end
 
 
@@ -104,17 +105,17 @@ class Train
     else
       "no such station in the route"
     end
-    @current_station = @route.index(station)
+    @current_station_index = @route.index(station)
 
   end
 
 
   def show_next_station
-    @route[@current_station + 1]
+    @route[@current_station_index + 1]
   end
 
   def show_preview_station
-    @route[@current_station - 1]
+    @route[@current_station_index - 1]
   end
 
   def show_current_station
