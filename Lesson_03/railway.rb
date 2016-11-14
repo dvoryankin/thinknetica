@@ -1,5 +1,3 @@
-require "./railway.rb"
-
 
 class Station
 
@@ -15,12 +13,17 @@ class Station
   end
 
   def take_train(train)
-    #@trains << train
-    if @trains.include?(train)
+    if @trains.include_station?(train)
       puts "The train already on the station"
+    else
+          @trains << train
     end
     #train.move_to_station(self)
   end
+
+  # def include_station?(station)
+  #   trains.include? station
+  # end
 
   def show_all_trains
     puts "The list of all trains on the station #{name}"
@@ -53,7 +56,11 @@ class Route
   end
 
   def remove_station(station)
-    @route.delete(station)
+    if station == end_station || station == start_station
+      'You can not remove first and last station'
+    else
+      @route.delete(station)
+    end
   end
 
   def station_list
@@ -65,12 +72,16 @@ class Route
   end
 
 
+  def have_in_route?(station)
+    route.include? station
+  end
+
 end
 
 
 class Train
 
-  attr_accessor :speed, :wagons, :type, :station, :route
+  attr_accessor :speed, :wagons, :type, :station, :route, :have_in_route
   attr_reader :current_station_index
 
   def initialize(number=123, type='Passenger', wagons=0, route = Route.new)
@@ -81,62 +92,16 @@ class Train
     @route = route
   end
 
-  # def route
-  #   @route
-  # end
-
-  def include?
-    @route.include?
-  end
-
-  def index
-    @route.index
-  end
-
-  def speed_up
-    @speed += 10
-  end
-
-  def stop
-    @speed = 0
-  end
-
-  def show_speed
-    @speed
-  end
-
-  def show_wagons
-    @wagons
-  end
-
-  def add_wagon
-    if @speed.zero?
-      @wagons += 1
-    else  "Please, stop the train!"
-    end
-  end
-
-  def remove_wagon
-    if @speed.zero?
-      @wagons -= 1
-    else  "Please, stop the train!"
-    end
-  end
-
-  def add_route(route)
-    @route = route
-  end
-
   def move_to_station(station)
  
-    if @route.include?(station)
+    if route.have_in_route?(station)
       puts "Moving to #{station}"
     else
       "no such station in the route"
     end
     @current_station_index = @route.index(station)
 
-    station.take_train(self)
+    #station.take_train(self)
 
   end
 
@@ -164,14 +129,60 @@ class Train
     end 
   end
 
+
+
+  def route
+    @route
+  end
+
+
+
+  def index
+    @route.index
+  end
+
+ 
+  def add_wagon
+    if @speed.zero?
+      @wagons += 1
+    else  "Please, stop the train!"
+    end
+  end
+
+  def remove_wagon
+    if @speed.zero?
+      @wagons -= 1
+    else  "Please, stop the train!"
+    end
+  end
+
+  def add_route(route)
+    @route = route
+  end
+
+
+  def speed_up
+    @speed += 10
+    puts "Increase speed on 10 km"
+  end
+
+  def stop
+    @speed = 0
+    puts "Train stopped"
+  end
+
+  def show_speed
+    @speed
+    puts "Speed is #{@speed} km/h"
+  end
+
+  def show_wagons
+    @wagons
+    puts "The train has #{@wagons} wagons"
+  end
+
+
 end
-
-
-
-
-
-
-
 
 
 
