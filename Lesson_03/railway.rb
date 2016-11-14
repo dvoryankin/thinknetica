@@ -170,66 +170,6 @@ end
 
 
 
-# class Train
-
-#   attr_accessor :speed, :wagons, :type, :station, :route
-
-#   def initialize(number=123, type='Passenger', wagons=0, route = [])
-#     @speed = 0
-#     @wagons = wagons
-#     @type = type
-#     @number = number
-#     @route = route
-#   end
-
-#   def have_in_route?(station)
-#     route.include? station
-#   end
-
-
-#   def speed_up
-#     @speed += 10
-#   end
-
-#   def stop
-#     @speed = 0
-#   end
-
-#   def add_wagon
-#     if speed.zero?
-#       @wagons += 1
-#     else  "Please, stop the train!"
-#     end
-#   end
-
-#   def remove_wagon
-#     if speed.zero?
-#       @wagons -= 1
-#     else  "Please, stop the train!"
-#     end
-#   end
-
-#   def move_to_station(station)
- 
-#     if have_in_route?(station)
-#       puts "Moving to #{station}"
-#       self.station = station
-#     else
-#       "no such station in the route"
-#     end
-#   end
-
-
-#   def next_station
-#     index = route.index station
-#     route[index + 1]
-#   end
-
-#   def previous_station
-#     index = route.index station
-#     route[index - 1]
-#   end
-# end
 
 
 
