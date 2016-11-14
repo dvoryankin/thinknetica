@@ -13,29 +13,34 @@ class Station
   end
 
   def take_train(train)
-    if @trains.include_station?(train)
+
+    if @trains.include?(train)
       puts "The train already on the station"
     else
-          @trains << train
+          @trains << train.to_s
     end
     #train.move_to_station(self)
   end
-
-  # def include_station?(station)
-  #   trains.include? station
-  # end
 
   def show_all_trains
     puts "The list of all trains on the station #{name}"
     @trains.each { |trains| puts "#{train.number}" }
   end
 
+
+
+
   def show_type
   end
 
+
   def send_train(train)
-    @trains.delete(train)
-    puts "Train #{@number} send from station #{name}"
+    if @trains.include?(train)
+      puts "Train #{@number} send from station #{name}"
+      @trains.delete(train)
+    else
+      puts "There is no such train"
+    end
   end
 
 end
@@ -43,7 +48,7 @@ end
 
 class Route
 
-  attr_accessor :route
+  attr_accessor :route, :current_station
 
   def initialize(route=[])
     @route = route
@@ -56,9 +61,6 @@ class Route
   end
 
   def remove_station(station)
-    if station == end_station || station == start_station
-      'You can not remove first and last station'
-    else
       @route.delete(station)
     end
   end
@@ -76,35 +78,15 @@ class Route
     route.include? station
   end
 
-end
+  def route_index(station)
+    @route.index
 
+    # index = route.index 
 
-class Train
-
-  attr_accessor :speed, :wagons, :type, :station, :route, :have_in_route
-  attr_reader :current_station_index
-
-  def initialize(number=123, type='Passenger', wagons=0, route = Route.new)
-    @speed = 0
-    @wagons = wagons
-    @type = type
-    @number = number
-    @route = route
-  end
-
-  def move_to_station(station)
- 
-    if route.have_in_route?(station)
-      puts "Moving to #{station}"
-    else
-      "no such station in the route"
-    end
-    @current_station_index = @route.index(station)
-
-    #station.take_train(self)
+    # index = route.index current_station
+    # puts current_station
 
   end
-
 
   def show_current_station
     @route[@current_station_index]
@@ -128,6 +110,42 @@ class Train
       puts "#{@route[@current_station_index - 1]}"
     end 
   end
+
+end
+
+
+class Train
+
+  attr_accessor :speed, :wagons, :type, :station, :route, :have_in_route
+  attr_reader :current_station_index
+
+  def initialize(number=123, type='Passenger', wagons=0, route = Route.new)
+    @speed = 0
+    @wagons = wagons
+    @type = type
+    @number = number
+    @route = route
+  end
+
+
+
+  def move_to_station(station)
+ 
+    if route.have_in_route?(station)
+      puts "Moving to #{station}"
+      current_station = station
+      
+    else
+      "no such station in the route"
+    end
+    @current_station_index = @route.route_index(station)
+
+    #station.take_train(self)
+
+  end
+
+
+  
 
 
 
