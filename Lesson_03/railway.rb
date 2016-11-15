@@ -12,24 +12,24 @@ class Station
     @name = new_name
   end
 
-def take_train(train)
-  @list_trains << train
-end
-
-
 # def take_train(train)
-    
-#     unless @list_trains.include?(train)
-     
-#       @list_trains << train
-      
-#     else
-#     	 puts "The train already on the station"
-#     end
-#     #train.move_to_station(self)
-#   end
+#   @list_trains << train
+# end
 
-   def send_train(train)
+
+	def take_train(train)
+    
+    unless @list_trains.include?(train)
+     
+      @list_trains << train
+      
+    else
+    	 puts "The train already on the station"
+    end
+    #train.move_to_station(self)
+  end
+
+  def send_train(train)
    	if @list_trains.include?(train)
    		@list_trains.delete(train)
     	puts "Train #{train.number} send from station #{@name}"
@@ -61,13 +61,13 @@ end
 
 class Route
 
-  attr_accessor :stations, #:current_station
+  attr_accessor :stations #,:current_station
 
   def initialize(stations=[])
     @stations = stations
   end
 
-  
+ 
   def add_station(new)
     @route = @route.insert(-2, new)
     
@@ -124,30 +124,25 @@ class Train
 
   def show_next_station
   	route.stations[@index + 1]
-
-
- 
-
-
-    # @route[@current_station_index + 1]
-    # if (@current_station_index + 1 == nil)
-    #   puts "It is a last station"
-    # else
-    #   puts "#{@route[@current_station_index + 1]}"
-    # end
+  	if (route.stations[@index + 1] == nil)
+    	puts "It is a last station"
+    else
+    	puts "#{route.stations[@index + 1]}"
+    end
   end
 
   def show_previous_station
   	@route.stations[@index - 1]
-
-
-    # @route[@current_station_index - 1]
-    # if (@current_station_index - 1 == -1)
-    #   puts "You are on the first station"
-    # else
-    #   puts "#{@route[@current_station_index - 1]}"
-    # end 
+    if (@index - 1 == -1)
+      puts "You are on the first station"
+    else
+      puts "#{@route.stations[@index - 1]}"
+    end 
   end
+
+
+
+
 
   def speed_up
     @speed += 10

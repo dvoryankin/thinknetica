@@ -4,11 +4,13 @@ require "./railway.rb"
 omsk = Station.new 'omsk'
 moscow = Station.new 'moscow'
 minsk = Station.new 'minsk'
+novosibirsk = Station.new 'novosibirsk'
+kemerovo = Station.new 'kemerovo'
 
 train = Train.new
 
 route = Route.new(%w(omsk moscow minsk))
-route = Route.new(%w(omsk moscow minsk novosibirsk kemerovo))
+route2 = Route.new(%w(omsk moscow minsk novosibirsk kemerovo))
 
 
 train.add_route route
