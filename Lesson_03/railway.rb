@@ -84,7 +84,6 @@ class Train
   #   @route
   # end
 
-
   def move_to_station(station)
  
     if @route.stations.include?(station)
