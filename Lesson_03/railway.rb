@@ -87,11 +87,7 @@ class Train
     @route = route
   end
 
-  # def route
-  #   @route
-  # end
-
-  def move_to_station(station)
+  def move_to_station(station_from, station)
     if route.stations.include?(station)
       puts "Moving to #{station}"
     else
@@ -100,6 +96,7 @@ class Train
     station.to_s
     @index = route.stations.index(station.show_name)
     station.take_train(self)
+    station_from.send_train(self)
   end
 
   def index

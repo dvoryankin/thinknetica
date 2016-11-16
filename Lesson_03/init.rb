@@ -1,4 +1,4 @@
-require "./railway.rb"
+# require "./railway.rb"
 
 
 omsk = Station.new 'omsk'
@@ -35,9 +35,10 @@ omsk.send_train train1
 omsk.send_train train2
 omsk.send_train train3
 
+train.stop
 train.add_wagon
 train.speed_up
-
+train.stop
 
 
 
