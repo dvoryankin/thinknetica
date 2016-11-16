@@ -12,7 +12,6 @@ train = Train.new
 route = Route.new(%w(omsk moscow minsk))
 route2 = Route.new(%w(omsk moscow minsk novosibirsk kemerovo))
 
-
 train.add_route route
 
 train1 = Train.new(1, 'pas', 55, route)
@@ -35,6 +34,13 @@ omsk.list_type_trains 'pas'
 omsk.send_train train1
 omsk.send_train train2
 omsk.send_train train3
+
+train.add_wagon
+train.speed_up
+
+
+
+
 
 
 

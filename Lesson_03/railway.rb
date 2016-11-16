@@ -12,29 +12,23 @@ class Station
     @name = new_name
   end
 
-# def take_train(train)
-#   @list_trains << train
-# end
-
-
-	def take_train(train)
-    
+  def take_train(train)
     unless @list_trains.include?(train)
      
       @list_trains << train
       
     else
-    	 puts "The train already on the station"
+      puts "The train already on the station"
     end
     #train.move_to_station(self)
   end
 
   def send_train(train)
-   	if @list_trains.include?(train)
-   		@list_trains.delete(train)
-    	puts "Train #{train.number} send from station #{@name}"
+    if @list_trains.include?(train)
+      @list_trains.delete(train)
+      puts "Train #{train.number} send from station #{@name}"
     else
-    	puts "Here is no such train"
+      puts "Here is no such train"
     end
   end
 
@@ -49,11 +43,11 @@ class Station
   end
 
   def send_all_trains
-  	@list_trains = []
+    @list_trains = []
   end
 
   def show_name
-  	@name
+    @name
   end
 
 end
@@ -104,35 +98,35 @@ class Train
  
     if route.stations.include?(station)
       puts "Moving to #{station}"
+      station.to_s
+      @index = route.stations.index(station.show_name)
+
+      station.take_train(self)
     else
       "no such station in the route"
     end
-		
-		station.to_s
-		@index = route.stations.index(station.show_name)
 
-    station.take_train(self)
   end
 
   def index
-  	route.stations(station)
+    route.stations(station)
   end
 
   def show_current_station
-  	route.stations[@index]
+    route.stations[@index]
   end
 
   def show_next_station
-  	route.stations[@index + 1]
-  	if (route.stations[@index + 1] == nil)
-    	puts "It is a last station"
+    route.stations[@index + 1]
+    if (route.stations[@index + 1] == nil)
+      puts "It is a last station"
     else
-    	puts "#{route.stations[@index + 1]}"
+      puts "#{route.stations[@index + 1]}"
     end
   end
 
   def show_previous_station
-  	@route.stations[@index - 1]
+    @route.stations[@index - 1]
     if (@index - 1 == -1)
       puts "You are on the first station"
     else
@@ -184,7 +178,7 @@ class Train
   end
 
   def number
-  	@number
+    @number
   end
 
 end
