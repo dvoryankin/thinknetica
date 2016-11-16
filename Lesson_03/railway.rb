@@ -18,11 +18,8 @@ class Station
 
 
   def take_train(train)
-
     unless @list_trains.include?(train)
-
       @list_trains << train
-
     else
       puts "The train already on the station"
     end
