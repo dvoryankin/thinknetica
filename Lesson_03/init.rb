@@ -44,8 +44,6 @@ train.speed_up
 
 
 
-
-
 # express = Train.new#(123, 'Passenger', 0)
 # route = Route.new(['Moscow', 'Omsk', 'Novosibirsk'])
 # express.route

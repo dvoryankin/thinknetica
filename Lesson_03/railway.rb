@@ -12,11 +12,17 @@ class Station
     @name = new_name
   end
 
+# def take_train(train)
+#   @list_trains << train
+# end
+
+
   def take_train(train)
+
     unless @list_trains.include?(train)
-     
+
       @list_trains << train
-      
+
     else
       puts "The train already on the station"
     end
@@ -61,10 +67,10 @@ class Route
     @stations = stations
   end
 
- 
+
   def add_station(new)
     @route = @route.insert(-2, new)
-    
+
   end
 
   def remove_station(station)
@@ -95,17 +101,17 @@ class Train
   # end
 
   def move_to_station(station)
- 
+
     if route.stations.include?(station)
       puts "Moving to #{station}"
-      station.to_s
-      @index = route.stations.index(station.show_name)
-
-      station.take_train(self)
     else
       "no such station in the route"
     end
 
+    station.to_s
+    @index = route.stations.index(station.show_name)
+
+    station.take_train(self)
   end
 
   def index
@@ -131,7 +137,7 @@ class Train
       puts "You are on the first station"
     else
       puts "#{@route.stations[@index - 1]}"
-    end 
+    end
   end
 
 
