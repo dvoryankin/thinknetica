@@ -79,7 +79,7 @@ class Train
 
   attr_accessor :speed, :wagons, :type, :station, :route, :current_station
 
-  def initialize(number=123, type='Passenger', wagons=0, route = Route.new)
+  def initialize(route = Route.new)
     @speed = 0
     @wagons = wagons
     @type = type
@@ -108,20 +108,18 @@ class Train
   end
 
   def show_next_station
-    puts "next station is #{route.stations[@index + 1]}"
     if (route.stations[@index + 1] == nil)
       puts "It is a last station"
     else
-      puts "#{route.stations[@index + 1]}"
+      puts "next station is #{route.stations[@index + 1]}"
     end
   end
 
   def show_previous_station
-    puts "previous station is #{ @route.stations[@index - 1]}"
     if (@index - 1 == -1)
       puts "You are on the first station"
     else
-      puts "#{@route.stations[@index - 1]}"
+      puts "previous station is #{ @route.stations[@index - 1]}"
     end
   end
 
@@ -151,7 +149,8 @@ class Train
   def remove_wagon
     if @speed.zero?
       @wagons -= 1
-    else  "Please, stop the train!"
+    else
+      "Please, stop the train!"
     end
   end
 
