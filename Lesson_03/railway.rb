@@ -1,5 +1,4 @@
 class Station
-
   attr_writer :name
   attr_reader :list_trains
 
@@ -12,18 +11,13 @@ class Station
     @name = new_name
   end
 
-# def take_train(train)
-#   @list_trains << train
-# end
-
-
   def take_train(train)
     unless @list_trains.include?(train)
       @list_trains << train
-    else
-      puts "The train already on the station"
-    end
-    #train.move_to_station(self)
+      else
+        puts "The train already on the station"
+      end
+      #train.move_to_station(self)
   end
 
   def send_train(train)
@@ -32,7 +26,7 @@ class Station
       puts "Train #{train.number} send from station #{@name}"
     else
       puts "Here is no such train"
-    end
+      end
   end
 
   def show_all_trains
@@ -98,16 +92,13 @@ class Train
   # end
 
   def move_to_station(station)
-
     if route.stations.include?(station)
       puts "Moving to #{station}"
     else
       "no such station in the route"
     end
-
     station.to_s
     @index = route.stations.index(station.show_name)
-
     station.take_train(self)
   end
 
@@ -116,11 +107,11 @@ class Train
   end
 
   def show_current_station
-    route.stations[@index]
+    puts "current station is #{route.stations[@index]}"
   end
 
   def show_next_station
-    route.stations[@index + 1]
+    puts "next station is #{route.stations[@index + 1]}"
     if (route.stations[@index + 1] == nil)
       puts "It is a last station"
     else
@@ -129,17 +120,13 @@ class Train
   end
 
   def show_previous_station
-    @route.stations[@index - 1]
+    puts "previous station is #{ @route.stations[@index - 1]}"
     if (@index - 1 == -1)
       puts "You are on the first station"
     else
       puts "#{@route.stations[@index - 1]}"
     end
   end
-
-
-
-
 
   def speed_up
     @speed += 10
