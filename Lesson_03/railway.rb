@@ -79,8 +79,8 @@ class Train
 
   attr_accessor :speed, :wagons, :type, :station, :route, :current_station
 
-  def initialize(number, type, wagons, route)
-    @speed = 0
+  def initialize(number, type, wagons, speed, route)
+    @speed = speed
     @wagons = wagons
     @type = type
     @number = number
