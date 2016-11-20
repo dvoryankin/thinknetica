@@ -7,16 +7,21 @@ minsk = Station.new 'minsk'
 novosibirsk = Station.new 'novosibirsk'
 kemerovo = Station.new 'kemerovo'
 
-train = Train.new
+train = Train.new(1111,'pas',3,4,5)
+
 
 route = Route.new(%w(omsk moscow minsk))
 route2 = Route.new(%w(omsk moscow minsk novosibirsk kemerovo))
+#route3 = Route.new[omsk, moscow, minsk]
 
 train.add_route route
 
-train1 = Train.new(1, 'pas', 55, route)
-train2 = Train.new(2, 'pas', 55, route)
-train3 = Train.new(3, 'pas', 55, route)
+
+train.move_to_station omsk, minsk
+
+train1 = Train.new(1, 'pas', 55, 000, route)
+train2 = Train.new(2, 'pas', 55, 000, route)
+train3 = Train.new(3, 'pas', 55, 000, route)
 
 
 train1.add_route route

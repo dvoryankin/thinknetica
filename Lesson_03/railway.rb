@@ -14,10 +14,10 @@ class Station
   def take_train(train)
     unless @list_trains.include?(train)
       @list_trains << train
-      else
-        puts "The train already on the station"
-      end
-      #train.move_to_station(self)
+    else
+      puts "The train already on the station"
+    end
+    #train.move_to_station(self)
   end
 
   def send_train(train)
@@ -26,7 +26,7 @@ class Station
       puts "Train #{train.number} send from station #{@name}"
     else
       puts "Here is no such train"
-      end
+    end
   end
 
   def show_all_trains
@@ -168,3 +168,4 @@ class Train
   end
 
 end
+
