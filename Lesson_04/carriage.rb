@@ -4,5 +4,9 @@ class Carriage
     @type = type
   end
 
+  def type
+    @type
+  end
+
 end
 

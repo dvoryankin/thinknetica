@@ -10,6 +10,7 @@ class Train
     @route = route
   end
 
+
   def move_to_station(station_from, station)
     if route.stations.include?(station)
       puts "Moving to #{station}"
@@ -20,10 +21,6 @@ class Train
     @index = route.stations.index(station.show_name)
     station.take_train(self)
     station_from.send_train(self)
-  end
-
-  def index
-    route.stations(station)
   end
 
   def show_current_station
@@ -69,9 +66,9 @@ class Train
     end
   end
 
-  def remove_wagon
+  def remove_carriage
     if @speed.zero?
-      @wagons -= 1
+      @carriage.pop
     else
       "Please, stop the train!"
     end
@@ -81,14 +78,20 @@ class Train
     @route = route
   end
 
-
   def index
-    @route.index
+    route.stations(station)
   end
 
   def number
     @number
   end
+
+  def type
+    @type
+  end
+
+protected
+
 
 end
 
