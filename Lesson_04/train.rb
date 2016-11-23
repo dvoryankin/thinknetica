@@ -1,13 +1,19 @@
 class Train
 
-  attr_accessor :speed, :type, :carriage, :station, :route, :current_station
+  attr_accessor :number, :carriages, :speed, :type, :carriage, :station, :route, :current_station
 
-  def initialize(number, type, carriage = [], speed, route)
-    @speed = speed
-    @carriage = carriage
-    @type = type
-    @number = number
-    @route = route
+  # attr_reader :wagons
+  # attr_writer :number, :type, :wagons
+
+  def initialize(number, type)
+
+    # type=nil, carriage = [], speed=0, route=Route.new)
+
+    @speed = 0
+    self.number = number
+    self.type = type
+    self.carriages = []
+    puts "Train number #{number} type #{type} created"
   end
 
 
@@ -56,21 +62,35 @@ class Train
   end
 
   def show_carriages
-    @carriage
+    @carriages
+  end
+
+  def carriages_count
+    @carriages.size
   end
 
   def add_carriage(carriage)
     if @speed.zero?
-      @carriage << carriage
-    else  "Please, stop the train!"
+      if carriage.type == self.type.to_sym && !carriages.include?(carriage)
+        @carriages << carriage
+      else
+        puts "Different type of train!"
+      end
+    else
+      puts "Please, stop the train!"
     end
   end
 
   def remove_carriage
     if @speed.zero?
-      @carriage.pop
+      if @carriages.size > 0
+        @carriages.pop
+        puts "One carriage removed"
+      else
+        puts "There is no carriages"
+      end
     else
-      "Please, stop the train!"
+      puts "Please, stop the train!"
     end
   end
 

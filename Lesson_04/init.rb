@@ -32,32 +32,42 @@ route = Route.new(%w(omsk moscow minsk))
 route2 = Route.new(%w(omsk moscow minsk novosibirsk kemerovo))
 
 
-ptrain = PassengerTrain.new(555,'pass',0,route)
-ctrain = CargoTrain.new(1111,'carg',4, route)
-train = Train.new(1111,'pass',0,4, route)
+# ptrain = PassengerTrain.new(555,'passenger')
+# ctrain = CargoTrain.new(1111,'cargo')
+# train = Train.new(1111,'passenger')
 
 pascarriage = PassengerCarriage.new
 
 carcarriage = CargoCarriage.new
 
 
-ctrain.stop
-ctrain.add_carriage pascarriage
-
-ctrain.add_carriage carcarriage
-ptrain.add_carriage pascarriage
-
-
-ptrain.stop
-ptrain.add_carriage pascarriage
-ptrain.speed_up
-ptrain.stop
 
 
 
 
+# ctrain.stop
+# ctrain.add_carriage pascarriage
 
-puts ctrain
+# ctrain.add_carriage carcarriage
+# ptrain.add_carriage pascarriage
+
+
+# ptrain.stop
+# ptrain.add_carriage pascarriage
+# ptrain.speed_up
+# ptrain.stop
+
+# trains = []
+# trains << train
+# trains << ptrain
+# trains << ctrain
+
+
+
+
+
+
+# puts ctrain
 
 
 

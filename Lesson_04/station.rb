@@ -31,7 +31,7 @@ class Station
 
   def show_all_trains
     puts "The list of all trains on the station #{@name}"
-    @list_trains.each { |trains| puts "#{trains.number}" }
+    @list_trains.each { |train| puts "#{train.type} - №#{train.number}" }
   end
 
   def list_type_trains(type)
@@ -43,7 +43,7 @@ class Station
     @list_trains = []
   end
 
-  def show_name
+  def name
     @name
   end
 
