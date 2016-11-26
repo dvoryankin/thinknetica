@@ -21,14 +21,6 @@ load './carriage/cargo_carriage.rb'
 # require_relative 'carriage/passenger_carriage'
 # require_relative 'carriage/cargo_carriage'
 
-train11 = Train.new(11,'cargo')
-train22 = Train.new(22,'cargo')
-train33 = Train.new(33,'cargo')
-
-Train.find(33)
-Train.find(333)
-
-
 
 omsk = Station.new 'omsk'
 moscow = Station.new 'moscow'
