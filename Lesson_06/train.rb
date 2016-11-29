@@ -5,7 +5,8 @@ class Train
   include Producer
   include InstanceCounter
 
-  attr_accessor :trains, :number, :producer, :carriages, :speed, :type, :carriage, :station, :route
+  attr_accessor :trains, :number, :producer_name, :carriages, :speed, :type, :carriage, :station, :route
+  NUMBER = /[a-z0-9]{3}\-?[a-z0-9]{2}\z/i
 
   @@trains = {}
 
@@ -21,21 +22,30 @@ class Train
 
   end
 
-  def initialize(number, type)
+  def initialize(number, producer_name, type)
     # type=nil, carriage = [], speed=0, route=Route.new)
+    @producer_name = producer_name
     @@trains[number] = self
     @speed = 0
     self.number = number
     self.type = type
     self.carriages = []
-    puts "Train number #{number} type #{type} created"
+    validate!
+    #puts "Train number #{number} type #{type} created"
   end
 
   def valid?
-    raise "Number can't be nil" if number.nil?
-    railse "Number should be at least 6 symbols" if number.length < 6
-    true
+    validate!
+  rescue
+    false
+  end
 
+  def validate!
+    raise "Type can't be nil" if type.nil?
+    raise "Number should be at least 6 symbols" if (number.to_s.length) <= 5
+    raise "Number can't be nil" if number.nil?
+    raise "Wrong number format(XXX-XX)" if number !~NUMBER
+    true
   end
 
   def move_to_station(station_from, station)

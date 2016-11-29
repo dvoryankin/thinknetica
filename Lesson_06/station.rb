@@ -26,7 +26,6 @@ class Station
     true
   end
 
-
   def change_name(new_name)
     @name = new_name
   end
