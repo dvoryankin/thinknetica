@@ -32,13 +32,14 @@ route = Route.new(%w(omsk moscow minsk))
 route2 = Route.new(%w(omsk moscow minsk novosibirsk kemerovo))
 
 
+train = Train.new '555-555', 'sapsan' ,'passenger'
 # ptrain = PassengerTrain.new(555,'passenger')
 # ctrain = CargoTrain.new(1111,'cargo')
 # train = Train.new(1111,'passenger')
 
-pascarriage = PassengerCarriage.new
+pascarriage = PassengerCarriage.new 'name'
 
-carcarriage = CargoCarriage.new
+carcarriage = CargoCarriage.new 'name'
 
 
 

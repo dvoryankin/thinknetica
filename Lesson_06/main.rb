@@ -2,7 +2,7 @@ require_relative 'train'
 require_relative 'route'
 require_relative 'station'
 require_relative 'carriage'
-#require_relative 'init'
+require_relative 'init'
 require_relative 'train/passenger_train'
 require_relative 'train/cargo_train'
 require_relative 'carriage/passenger_carriage'
@@ -70,8 +70,8 @@ class Main
     print "Enter train number: "
     number = gets.chomp.to_s
     print "Enter train producer name: "
-    producer = gets.chomp.to_i
-      puts %Q(
+    producer = gets.chomp.to_s
+    puts %Q(
       What kind of train you want to create?
         1. Passenger
         2. Cargo
@@ -86,11 +86,10 @@ class Main
       else
         puts "Wrong type of train!"
       end
+      puts "#{type} train number #{number} created. Producer - #{producer}"
     rescue RuntimeError => e
       puts "#{e}"
       retry
-    ensure
-      puts "#{type} train number #{number} created. Producer - #{producer}"
   end
 
   def  attach_carriage
