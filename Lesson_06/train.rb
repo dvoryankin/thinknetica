@@ -24,13 +24,13 @@ class Train
 
   def initialize(number, producer_name, type)
     # type=nil, carriage = [], speed=0, route=Route.new)
+    validate!
     self.producer_name = producer_name
     @@trains[number] = self
     @speed = 0
     self.number = number
     self.type = type
     self.carriages = []
-    validate!
     #puts "Train number #{number} type #{type} created"
   end
 
