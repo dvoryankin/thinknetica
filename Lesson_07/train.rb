@@ -24,11 +24,10 @@ class Train
 
   def initialize(number, producer_name, type)
     # type=nil, carriage = [], speed=0, route=Route.new)
-
-    self.producer_name = producer_name
     @@trains[number] = self
     @speed = 0
-    self.number = number
+    self.number = number.to_s
+    self.producer_name = producer_name.to_s
     self.type = type
     validate!
     self.carriages = []

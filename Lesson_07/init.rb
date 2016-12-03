@@ -4,9 +4,7 @@ load './route.rb'
 load './station.rb'
 load './carriage.rb'
 load './train/cargo_train.rb'
-
 load './train/passenger_train.rb'
-
 load './carriage/passenger_carriage.rb'
 load './carriage/cargo_carriage.rb'
 

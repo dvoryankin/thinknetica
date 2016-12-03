@@ -264,42 +264,83 @@ class Main
 
   def take_place_or_size
     if @trains.size > 0
-      puts 'Choose the train'
+      puts "Choose train"
       index = 0
-      @trains.each do |value|
-        index +=1
-        puts "#{index}. #{value.type} - #{value.number}"
-      end
+      @trains.each { |train| puts "#{index += 1} - #{train.number} - #{train.type}" }
       choice = gets.chomp.to_i
-          if choice <= @trains.size
-            if !@trains[choice - 1].carriages.empty?
-              puts 'Choose carriage: '
-              i = 1
-              @trains[choice - 1].show_carriages { |car| puts "#{i}. Carriage #{car.producer_name}"; i += 1 }
-              choice_wagon = gets.chomp.to_i
-              if @trains[choice - 1].type == 'passenger'
-                if choice_wagon <= @trains[choice - 1].carriages.size
-                  @trains[choice - 1].carriages[choice_wagon - 1].take_place
-                else
-                  puts 'No such carriage'
-                end
-              elsif @trains[choice - 1].type == 'cargo'
-                choice_wagon = gets.chomp.to_i
-                  if choice_wagon <= @trains[choice - 1].carriages.size
-                    @trains[choice - 1].carriages[choice_wagon - 1].take_size
-                  else
-                    puts 'No such carriage'
-                  end
-              end
+      if choice <= @trains.size
+        if @trains[choice-1].carriages.size != 0
+          puts "Choose carriage"
+          index = 0
+          if @trains[choice - 1].type == "cargo"
+            @trains[choice - 1].show_carriages { |car| puts "#{index += 1} - #{car.type} carriage - free: #{car.free_size}- volume: #{car.size}" }
+            cargo_choice = gets.chomp.to_i
+            if cargo_choice <= @trains[choice - 1].carriages.size
+              print "Set the value to engage: "
+              volume = gets.chomp.to_i
+              @trains[choice - 1].carriages[cargo_choice - 1].take_size(volume)
+              puts "Remain value: #{@trains[choice - 1].carriages[cargo_choice - 1].taking_size}"
             else
-              puts 'Add carriage to train at first'
+              puts "No such carriage"
             end
-          else
-            puts 'No such train'
+          elsif @trains[choice - 1].type == "passenger"
+            @trains[choice - 1].show_carriages { |car| puts "#{index += 1} - #{car.type} carriage - places: #{car.places}" }
+            pass_choice = gets.chomp.to_i
+            if pass_choice <= @trains[choice - 1].carriages.size
+              @trains[choice - 1].carriages[pass_choice - 1].take_place
+              @trains[choice - 1].carriages[pass_choice - 1].free_places
+            else
+              puts "No such train"
+            end
           end
+        else
+          puts "Add the carriage at first"
+        end
+      else
+        puts "No such train"
+      end
     else
-      puts 'Create a train at first'
-    end
+      puts "Create the train at first"
+  end
+
+
+    # if @trains.size > 0
+    #   puts 'Choose the train'
+    #   index = 0
+    #   @trains.each do |train|
+    #     index +=1
+    #     puts "#{index}. #{train.type} - #{train.number}"
+    #   end
+    #   choice = gets.chomp.to_i
+    #       if choice <= @trains.size
+    #         if !@trains[choice - 1].carriages.empty?
+    #           puts 'Choose carriage: '
+    #           i = 1
+    #           @trains[choice - 1].show_carriages { |car| puts "#{i}. Carriage #{car.producer_name}"; i += 1 }
+    #           choice_wagon = gets.chomp.to_i
+    #           # if @trains[choice - 1].type == 'passenger'
+    #           #   if choice_wagon <= @trains[choice - 1].carriages.size
+    #           #     @trains[choice - 1].carriages[choice_wagon - 1].take_place
+    #           #   else
+    #           #     puts 'No such carriage'
+    #           #   end
+    #           # elsif @trains[choice - 1].type == 'cargo'
+    #           #   choice_wagon = gets.chomp.to_i
+    #           #     if choice_wagon <= @trains[choice - 1].carriages.size
+    #           #       @trains[choice - 1].carriages[choice_wagon - 1].take_size
+    #           #     else
+    #           #       puts 'No such carriage'
+    #           #     end
+    #           # end
+    #         else
+    #           puts 'Add carriage to train at first'
+    #         end
+    #       else
+    #         puts 'No such train'
+    #       end
+    # else
+    #   puts 'Create a train at first'
+    # end
   end
 
 
