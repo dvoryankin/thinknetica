@@ -20,14 +20,14 @@ class Train
     end
   end
 
-  def initialize(number, optiolns = {})
+  def initialize(*args)
     # type=nil, carriage = [], speed=0, route=Route.new)
     @@trains[number] = self
     @speed = 0
-    self.number = number.to_s
-    self.producer_name = options[:producer_name].to_s || 'PT'
-    self.type = optiolns[:type] || 'passenger'
-    validate!
+    self.number = args[0] || 1
+    self.producer_name = args[1] || 'PT'
+    self.type = args[2] || 'passenger'
+    #validate!
     self.carriages = []
     # puts "Train number #{number} type #{type} created"
   end

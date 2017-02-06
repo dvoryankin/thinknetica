@@ -52,9 +52,6 @@ class Train
     @carriages.each { |carriage| block.call(carriage) }
   end
 
-  def method(&block)
-  end
-
   def move_to_station(station_from, station)
     if route.stations.include?(station)
       puts "Moving to #{station}"

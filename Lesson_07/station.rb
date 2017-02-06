@@ -53,9 +53,6 @@ class Station
     list_trains.each { |train| yield(train) }
   end
 
-  def method(&block)
-  end
-
   def show_all_trains
     puts "The list of all trains on the station #{@name}"
     @list_trains.each { |train| puts "№#{train.number} - type: #{train.type} - carriages: #{train.carriages_count}" }
